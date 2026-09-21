@@ -1,0 +1,26 @@
+{
+    "vocab_size": 32000,
+    "shard_size": 100000000,
+    "training": {
+        "target_tokens": 2700000000,
+        "actual_tokens": 2700005152,
+        "fineweb_tokens": 2160001629,
+        "cosmopedia_tokens": 540003523,
+        "fineweb_fraction": 0.7999990768165763,
+        "cosmopedia_fraction": 0.2000009231834236,
+        "num_shards": 28
+    },
+    "validation": {
+        "target_tokens": 10000000,
+        "actual_tokens": 10006182,
+        "fineweb_tokens": 8005385,
+        "cosmopedia_tokens": 2000797,
+        "fineweb_fraction": 0.8000439128530742,
+        "cosmopedia_fraction": 0.19995608714692578
+    },
+    "token_audit": {
+        "zero_frequency_tokens": 46,
+        "frequency_1_to_9": 10,
+        "frequency_10_to_99": 77
+    }
+}

@@ -3,8 +3,15 @@
 # GitHub blocks individual files > 100 MB and repositories > 2 GB.
 # Your 28 shards (~5.4 GB total) must stay strictly local.
 # =======================================================
-artifacts/pretraining_data/
-artifacts/pretraining_data_smoke/
+# Ignore all contents of pretraining data folders:
+artifacts/pretraining_data/*
+artifacts/pretraining_data_smoke/*
+
+# Re-include the metadata and audit reports:
+!artifacts/pretraining_data/metadata.json
+!artifacts/pretraining_data/token_audit.json
+
+# Ensure binary files anywhere are ignored:
 *.bin
 *.tmp
 *.npy
@@ -36,7 +43,3 @@ wandb/
 runs/
 *.pt
 *.pth
-
-# Allow metadata and audit summaries through
-!artifacts/pretraining_data/metadata.json
-!artifacts/pretraining_data/token_audit.json

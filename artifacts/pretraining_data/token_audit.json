@@ -1,0 +1,243 @@
+{
+    "zero_frequency_tokens": 46,
+    "frequency_1_to_9": 10,
+    "frequency_10_to_99": 77,
+    "zero_frequency_details": [
+        {
+            "id": 125,
+            "token": "À"
+        },
+        {
+            "id": 126,
+            "token": "Á"
+        },
+        {
+            "id": 174,
+            "token": "ñ"
+        },
+        {
+            "id": 175,
+            "token": "ò"
+        },
+        {
+            "id": 177,
+            "token": "ô"
+        },
+        {
+            "id": 178,
+            "token": "õ"
+        },
+        {
+            "id": 179,
+            "token": "ö"
+        },
+        {
+            "id": 180,
+            "token": "÷"
+        },
+        {
+            "id": 181,
+            "token": "ø"
+        },
+        {
+            "id": 182,
+            "token": "ù"
+        },
+        {
+            "id": 183,
+            "token": "ú"
+        },
+        {
+            "id": 184,
+            "token": "û"
+        },
+        {
+            "id": 185,
+            "token": "ü"
+        },
+        {
+            "id": 186,
+            "token": "ý"
+        },
+        {
+            "id": 187,
+            "token": "þ"
+        },
+        {
+            "id": 188,
+            "token": "ÿ"
+        },
+        {
+            "id": 189,
+            "token": "Ā"
+        },
+        {
+            "id": 190,
+            "token": "ā"
+        },
+        {
+            "id": 191,
+            "token": "Ă"
+        },
+        {
+            "id": 192,
+            "token": "ă"
+        },
+        {
+            "id": 193,
+            "token": "Ą"
+        },
+        {
+            "id": 194,
+            "token": "ą"
+        },
+        {
+            "id": 195,
+            "token": "Ć"
+        },
+        {
+            "id": 196,
+            "token": "ć"
+        },
+        {
+            "id": 200,
+            "token": "ċ"
+        },
+        {
+            "id": 201,
+            "token": "Č"
+        },
+        {
+            "id": 203,
+            "token": "Ď"
+        },
+        {
+            "id": 204,
+            "token": "ď"
+        },
+        {
+            "id": 205,
+            "token": "Đ"
+        },
+        {
+            "id": 206,
+            "token": "đ"
+        },
+        {
+            "id": 207,
+            "token": "Ē"
+        },
+        {
+            "id": 208,
+            "token": "ē"
+        },
+        {
+            "id": 209,
+            "token": "Ĕ"
+        },
+        {
+            "id": 210,
+            "token": "ĕ"
+        },
+        {
+            "id": 211,
+            "token": "Ė"
+        },
+        {
+            "id": 212,
+            "token": "ė"
+        },
+        {
+            "id": 213,
+            "token": "Ę"
+        },
+        {
+            "id": 214,
+            "token": "ę"
+        },
+        {
+            "id": 215,
+            "token": "Ě"
+        },
+        {
+            "id": 216,
+            "token": "ě"
+        },
+        {
+            "id": 217,
+            "token": "Ĝ"
+        },
+        {
+            "id": 218,
+            "token": "ĝ"
+        },
+        {
+            "id": 219,
+            "token": "Ğ"
+        },
+        {
+            "id": 220,
+            "token": "ğ"
+        },
+        {
+            "id": 222,
+            "token": "ġ"
+        },
+        {
+            "id": 17412,
+            "token": "à¸įà¸įà¸įà¸į"
+        }
+    ],
+    "frequency_1_to_9_details": [
+        {
+            "id": 171,
+            "token": "î",
+            "count": 3
+        },
+        {
+            "id": 4825,
+            "token": "ortunately",
+            "count": 3
+        },
+        {
+            "id": 8738,
+            "token": "Ġpasseng",
+            "count": 8
+        },
+        {
+            "id": 11265,
+            "token": "Ġpreca",
+            "count": 3
+        },
+        {
+            "id": 11753,
+            "token": "Ġdinosa",
+            "count": 2
+        },
+        {
+            "id": 14484,
+            "token": "Ġquestionna",
+            "count": 4
+        },
+        {
+            "id": 15226,
+            "token": "Ġmeticul",
+            "count": 4
+        },
+        {
+            "id": 17863,
+            "token": "Ġopio",
+            "count": 6
+        },
+        {
+            "id": 18378,
+            "token": "Ġlawsu",
+            "count": 2
+        },
+        {
+            "id": 22244,
+            "token": "arader",
+            "count": 1
+        }
+    ]
+}
