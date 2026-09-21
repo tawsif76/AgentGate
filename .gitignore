@@ -1,0 +1,42 @@
+# =======================================================
+# 1. Dataset & Binary Files (DO NOT PUSH TO GITHUB)
+# GitHub blocks individual files > 100 MB and repositories > 2 GB.
+# Your 28 shards (~5.4 GB total) must stay strictly local.
+# =======================================================
+artifacts/pretraining_data/
+artifacts/pretraining_data_smoke/
+*.bin
+*.tmp
+*.npy
+
+# =======================================================
+# 2. Python Cache & Virtual Environments
+# =======================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# =======================================================
+# 3. IDE & OS Artifacts
+# =======================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =======================================================
+# 4. Training Checkpoints & Large Output Logs
+# =======================================================
+checkpoints/
+wandb/
+runs/
+*.pt
+*.pth
+
+# Allow metadata and audit summaries through
+!artifacts/pretraining_data/metadata.json
+!artifacts/pretraining_data/token_audit.json

@@ -1,0 +1,28 @@
+{
+    "train_documents": 100000,
+    "eval_documents": 20000,
+    "eval_block_size": 2000,
+    "seed": 42,
+    "results": [
+        {
+            "vocab_size": 24000,
+            "documents": 20000,
+            "tokens": 19289316,
+            "characters_per_token": 4.5270300408785875,
+            "unseen_percent": 0.43335138964123504,
+            "rare_percent_1_to_9": 1.1250468769532065,
+            "block_mean": 4.528547539500747,
+            "block_std": 0.03161478345868343
+        },
+        {
+            "vocab_size": 32000,
+            "documents": 20000,
+            "tokens": 18802803,
+            "characters_per_token": 4.64416464928128,
+            "unseen_percent": 0.5093909184662021,
+            "rare_percent_1_to_9": 1.7594299821869435,
+            "block_mean": 4.6456969098726635,
+            "block_std": 0.03157106358132837
+        }
+    ]
+}
