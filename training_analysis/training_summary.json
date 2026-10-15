@@ -1,0 +1,67 @@
+{
+    "target": {
+        "steps": 20599,
+        "tokens": 2699952128
+    },
+    "initial": {
+        "loss": 10.496055603027344,
+        "expected_random_loss": 10.373491181781864
+    },
+    "final_training": {
+        "step": 20599,
+        "tokens_seen": 2699952128,
+        "train_loss": 2.946726613574558,
+        "learning_rate": 6e-05,
+        "grad_norm": 0.32830188009474015,
+        "clip_frac": 0.0,
+        "tokens_per_sec": 22881.742409150793,
+        "mfu": 0.2329302981532081,
+        "peak_mem_gb": 11.976534016,
+        "training_compute_hours": 33.91901139028988,
+        "wall_gpu_hours": 35.98893431140317,
+        "cost_usd": 28.79114744933446
+    },
+    "training_averages": {
+        "tokens_per_sec": 22748.74910772148,
+        "mfu": 0.23157646028542742,
+        "step_time": 5.762021868411923,
+        "grad_norm": 0.29779260702163274,
+        "clip_frac": 0.006153100775193799
+    },
+    "training_extremes": {
+        "max_grad_norm": 7.2349518775939945,
+        "max_peak_memory_gb": 11.976534016,
+        "min_train_loss": 2.76209100484848
+    },
+    "final_validation": {
+        "step": 20599,
+        "tokens_seen": 2699952128,
+        "eval_type": "full",
+        "val_tokens": 10002432,
+        "val_loss": 2.896446466445923,
+        "val_ppl": 18.10967754618211,
+        "nearest_train_loss": 2.946726613574558,
+        "generalization_gap": -0.05028014712863493
+    },
+    "best_validation": {
+        "step": 20599,
+        "tokens_seen": 2699952128,
+        "val_loss": 2.896446466445923,
+        "val_ppl": 18.10967754618211
+    },
+    "validation_trend": {
+        "first_val_loss": 7.499512195587158,
+        "final_val_loss": 2.896446466445923,
+        "absolute_improvement": 4.603065729141235,
+        "recent_slope_loss_per_1000_steps": -0.006142435666225139
+    },
+    "last_session_end": {
+        "event": "session_end",
+        "step": 10000,
+        "tokens_seen": 1310720000,
+        "remaining_steps": 10599,
+        "wall_gpu_hours": 17.648276845547887,
+        "cost_usd": 14.11862147670322,
+        "time": 1790754304.294909
+    }
+}

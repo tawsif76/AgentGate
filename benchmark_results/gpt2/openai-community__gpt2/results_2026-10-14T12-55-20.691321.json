@@ -1,0 +1,277 @@
+{
+  "results": {
+    "hellaswag": {
+      "name": "hellaswag",
+      "alias": "hellaswag",
+      "sample_len": 10042,
+      "acc,none": 0.2891854212308305,
+      "acc_stderr,none": 0.004524575892953094,
+      "acc_norm,none": 0.31139215295757816,
+      "acc_norm_stderr,none": 0.004621163476949437
+    },
+    "piqa": {
+      "name": "piqa",
+      "alias": "piqa",
+      "sample_len": 1838,
+      "acc,none": 0.6289445048966268,
+      "acc_stderr,none": 0.011271222398600666,
+      "acc_norm,none": 0.6251360174102285,
+      "acc_norm_stderr,none": 0.01129456580561892
+    },
+    "arc_easy": {
+      "name": "arc_easy",
+      "alias": "arc_easy",
+      "sample_len": 2376,
+      "acc,none": 0.43813131313131315,
+      "acc_stderr,none": 0.010180937100600149,
+      "acc_norm,none": 0.3947811447811448,
+      "acc_norm_stderr,none": 0.01003003893588357
+    }
+  },
+  "group_subtasks": {},
+  "configs": {
+    "arc_easy": {
+      "task": "arc_easy",
+      "dataset_path": "allenai/ai2_arc",
+      "dataset_name": "ARC-Easy",
+      "training_split": "train",
+      "validation_split": "validation",
+      "test_split": "test",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{choices.label.index(answerKey)}}",
+      "unsafe_code": false,
+      "doc_to_choice": "{{choices.text}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_choice": "{{choices.text}}",
+        "doc_to_target": "{{choices.label.index(answerKey)}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "Question: {{question}}\nAnswer:",
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "openai-community/gpt2",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\arc\\arc_easy.yaml"
+      }
+    },
+    "hellaswag": {
+      "task": "hellaswag",
+      "dataset_path": "Rowan/hellaswag",
+      "training_split": "train",
+      "validation_split": "validation",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        ctx = doc[\"ctx_a\"] + \" \" + doc[\"ctx_b\"].capitalize()\n        out_doc = {\n            \"query\": preprocess(doc[\"activity_label\"] + \": \" + ctx),\n            \"choices\": [preprocess(ending) for ending in doc[\"endings\"]],\n            \"gold\": int(doc[\"label\"]),\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "{{query}}",
+      "doc_to_target": "{{label}}",
+      "unsafe_code": false,
+      "doc_to_choice": "choices",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": "<function process_docs at 0x000001A3CCF5C7C0>",
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "{{query}}",
+        "doc_to_choice": "choices",
+        "doc_to_target": "{{label}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "openai-community/gpt2",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\hellaswag\\hellaswag.yaml"
+      }
+    },
+    "piqa": {
+      "task": "piqa",
+      "dataset_path": "baber/piqa",
+      "training_split": "train",
+      "validation_split": "validation",
+      "doc_to_text": "Question: {{goal}}\nAnswer:",
+      "doc_to_target": "label",
+      "unsafe_code": false,
+      "doc_to_choice": "{{[sol1, sol2]}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{goal}}\nAnswer:",
+        "doc_to_choice": "{{[sol1, sol2]}}",
+        "doc_to_target": "label",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "goal",
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "openai-community/gpt2",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\piqa\\piqa.yaml"
+      }
+    }
+  },
+  "versions": {
+    "arc_easy": 1.0,
+    "hellaswag": 1.0,
+    "piqa": 1.0
+  },
+  "n-shot": {
+    "arc_easy": 0,
+    "hellaswag": 0,
+    "piqa": 0
+  },
+  "higher_is_better": {
+    "arc_easy": {
+      "acc": true,
+      "acc_norm": true
+    },
+    "hellaswag": {
+      "acc": true,
+      "acc_norm": true
+    },
+    "piqa": {
+      "acc": true,
+      "acc_norm": true
+    }
+  },
+  "n-samples": {
+    "hellaswag": {
+      "original": 10042,
+      "effective": 10042
+    },
+    "piqa": {
+      "original": 1838,
+      "effective": 1838
+    },
+    "arc_easy": {
+      "original": 2376,
+      "effective": 2376
+    }
+  },
+  "config": {
+    "model": "hf",
+    "model_args": {
+      "pretrained": "openai-community/gpt2",
+      "dtype": "float32"
+    },
+    "model_num_parameters": 124439808,
+    "model_dtype": "torch.float32",
+    "model_revision": "main",
+    "model_sha": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+    "batch_size": "4",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "455251b",
+  "date": 1791960521.3802903,
+  "pretty_env_info": "PyTorch version: 2.5.1+cu121\nIs debug build: False\nCUDA used to build PyTorch: 12.1\nROCM used to build PyTorch: N/A\n\nOS: Could not collect\nGCC version: (GCC) 11.2.0\r\nClang version: Could not collect\nCMake version: Could not collect\nLibc version: N/A\n\nPython version: 3.12.6 | packaged by Anaconda, Inc. | (main, Oct  3 2024, 07:22:25) [MSC v.1929 64 bit (AMD64)] (64-bit runtime)\nPython platform: Windows-11-10.0.26200-SP0\nIs CUDA available: True\nCUDA runtime version: Could not collect\nCUDA_MODULE_LOADING set to: LAZY\nGPU models and configuration: GPU 0: NVIDIA GeForce RTX 3060 Laptop GPU\nNvidia driver version: 555.97\ncuDNN version: Could not collect\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\n'wmic' is not recognized as an internal or external command,\r\noperable program or batch file.\n\nVersions of relevant libraries:\n[pip3] numpy==2.5.3\n[pip3] torch==2.5.1+cu121\n[conda] numpy                     2.5.3                    pypi_0    pypi\n[conda] torch                     2.5.1+cu121              pypi_0    pypi",
+  "transformers_version": "4.49.0",
+  "lm_eval_version": "0.4.13",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "<|endoftext|>",
+    "50256"
+  ],
+  "tokenizer_eos_token": [
+    "<|endoftext|>",
+    "50256"
+  ],
+  "tokenizer_bos_token": [
+    "<|endoftext|>",
+    "50256"
+  ],
+  "eot_token_id": 50256,
+  "max_length": 1024,
+  "task_hashes": {
+    "hellaswag": "edcc7edd27a555d3f7cbca0641152b2c5e4eb6eb79c5e62d7fe5887f47814323",
+    "piqa": "74d5a816572c396ad46edbd386954abe5ddb3db2d7195088387d1d5c1b32fd8b",
+    "arc_easy": "dce0d9b0f0cecd55bf2ac264042c5e45487df708d13123af3ae9e67bbbefdeb1"
+  },
+  "model_source": "hf",
+  "model_name": "openai-community/gpt2",
+  "model_name_sanitized": "openai-community__gpt2",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": null,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "411.1386106000282"
+}

@@ -1,0 +1,90 @@
+{
+  "model": {
+    "vocab_size": 32000,
+    "context_length": 2048,
+    "n_layers": 24,
+    "n_heads": 10,
+    "hidden_size": 640,
+    "intermediate_size": 1792,
+    "rope_theta": 10000.0,
+    "rms_norm_eps": 1e-05,
+    "head_dim": 64
+  },
+  "training": {
+    "max_steps": 20599,
+    "grad_accum_steps": 16,
+    "tokens_per_step": 131072,
+    "grad_clip": 1.0,
+    "log_every": 10,
+    "eval_every": 400,
+    "subset_eval_batches": 250,
+    "checkpoint_every": 400,
+    "early_eval_steps": [
+      50,
+      100,
+      200
+    ],
+    "full_eval_tokens": [
+      100000000,
+      500000000,
+      1000000000,
+      1500000000,
+      2000000000
+    ],
+    "performance_warmup_steps": 10,
+    "step0_loss_tolerance": 1.0,
+    "peak_flops": 121000000000000.0,
+    "price_per_hour": 0.8,
+    "out_dir": "/storage/runs/actiongate_base_142m"
+  },
+  "parameter_count": 142408320,
+  "matmul_param_count": 142376960,
+  "flops_per_token": 1231749120,
+  "flops_convention": "6N + 12*L*H*Q*T; N = matmul-only parameters, excluding RMSNorm weights",
+  "pytorch_version": "2.14.0+cu130",
+  "torch_compile": false,
+  "gpu": "NVIDIA L4",
+  "optimizer": {
+    "name": "AdamW",
+    "peak_lr": 0.0006,
+    "min_lr": 6e-05,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1
+  },
+  "scheduler": {
+    "name": "cosine_with_linear_warmup",
+    "warmup_steps": 206,
+    "total_steps": 20599
+  },
+  "data": {
+    "vocab_size": 32000,
+    "shard_size": 100000000,
+    "training": {
+      "target_tokens": 2700000000,
+      "actual_tokens": 2700005152,
+      "fineweb_tokens": 2160001629,
+      "cosmopedia_tokens": 540003523,
+      "fineweb_fraction": 0.7999990768165763,
+      "cosmopedia_fraction": 0.2000009231834236,
+      "num_shards": 28
+    },
+    "validation": {
+      "target_tokens": 10000000,
+      "actual_tokens": 10006182,
+      "fineweb_tokens": 8005385,
+      "cosmopedia_tokens": 2000797,
+      "fineweb_fraction": 0.8000439128530742,
+      "cosmopedia_fraction": 0.19995608714692578
+    },
+    "token_audit": {
+      "zero_frequency_tokens": 46,
+      "frequency_1_to_9": 10,
+      "frequency_10_to_99": 77
+    }
+  },
+  "precision": "bf16"
+}

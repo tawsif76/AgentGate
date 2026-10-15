@@ -1,0 +1,15 @@
+{
+  "checkpoint": "checkpoints/final.pt",
+  "block_length": 64,
+  "examples": 100,
+  "batch_size": 2,
+  "token_low": 256,
+  "token_high": 32000,
+  "seed": 123,
+  "topk": 10,
+  "output": "interpretability_results\\heads",
+  "figure_name": "head_specialization_combined.pdf",
+  "annotate_threshold": 0.5,
+  "device": "cuda",
+  "toy": false
+}

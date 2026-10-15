@@ -1,0 +1,83 @@
+{
+  "checkpoint": "checkpoints/final.pt",
+  "examples": 100,
+  "batch_size": 2,
+  "block_length": 64,
+  "seed": 20261012,
+  "output": "interpretability_results\\dependency",
+  "figure_name": "dependency_effects.pdf",
+  "device": "cuda",
+  "targets": [
+    [
+      19,
+      8
+    ],
+    [
+      19,
+      9
+    ],
+    [
+      18,
+      8
+    ]
+  ],
+  "cases": {
+    "baseline": [],
+    "previous_L16H2": [
+      [
+        16,
+        2
+      ]
+    ],
+    "previous_L16H4": [
+      [
+        16,
+        4
+      ]
+    ],
+    "previous_L16H2_H4": [
+      [
+        16,
+        2
+      ],
+      [
+        16,
+        4
+      ]
+    ],
+    "comparison_L16H0": [
+      [
+        16,
+        0
+      ]
+    ],
+    "comparison_L16H7": [
+      [
+        16,
+        7
+      ]
+    ],
+    "comparison_L16H0_H7": [
+      [
+        16,
+        0
+      ],
+      [
+        16,
+        7
+      ]
+    ],
+    "comparison_L15H0": [
+      [
+        15,
+        0
+      ]
+    ],
+    "comparison_L17H0": [
+      [
+        17,
+        0
+      ]
+    ]
+  }
+}

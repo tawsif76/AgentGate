@@ -1,45 +1,50 @@
-# =======================================================
-# 1. Dataset & Binary Files (DO NOT PUSH TO GITHUB)
-# GitHub blocks individual files > 100 MB and repositories > 2 GB.
-# Your 28 shards (~5.4 GB total) must stay strictly local.
-# =======================================================
-# Ignore all contents of pretraining data folders:
-artifacts/pretraining_data/*
-artifacts/pretraining_data_smoke/*
-
-# Re-include the metadata and audit reports:
-!artifacts/pretraining_data/metadata.json
-!artifacts/pretraining_data/token_audit.json
-
-# Ensure binary files anywhere are ignored:
-*.bin
-*.tmp
-*.npy
-
-# =======================================================
-# 2. Python Cache & Virtual Environments
-# =======================================================
+# Python bytecode, tooling caches, and virtual environments
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
 .venv/
 venv/
 env/
 .env
+.env.*
+!.env.example
 
-# =======================================================
-# 3. IDE & OS Artifacts
-# =======================================================
+# Editor and OS files
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
-# =======================================================
-# 4. Training Checkpoints & Large Output Logs
-# =======================================================
+# Tokenized datasets: keep only lightweight audit and metadata files
+artifacts/pretraining_data/*
+!artifacts/pretraining_data/metadata.json
+!artifacts/pretraining_data/token_audit.json
+artifacts/pretraining_data_smoke/
+*.bin
+*.npy
+*.tmp
+
+# Large checkpoints and model weight exports
 checkpoints/
-wandb/
-runs/
 *.pt
 *.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Local accelerator, logging, and cache directories
+wandb/
+runs/
+.cache/
+.huggingface/
+modal_volumes/
+
+# Potentially large per-example harness outputs (keep aggregate JSON)
+benchmark_results/**/samples_*.jsonl
+
+# Local generated scratch files
+*.log

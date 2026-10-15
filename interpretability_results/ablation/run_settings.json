@@ -1,0 +1,95 @@
+{
+  "checkpoint": "checkpoints/final.pt",
+  "block_length": 64,
+  "examples": 100,
+  "batch_size": 4,
+  "seed": 20261012,
+  "token_low": 256,
+  "token_high": 32000,
+  "output": "interpretability_results/ablation",
+  "figure_name": "ablation_effects.pdf",
+  "device": "cuda",
+  "conditions": {
+    "baseline": [],
+    "induction_L19H8": [
+      [
+        19,
+        8
+      ]
+    ],
+    "induction_L19H9": [
+      [
+        19,
+        9
+      ]
+    ],
+    "induction_L18H8": [
+      [
+        18,
+        8
+      ]
+    ],
+    "induction_L19H8_H9": [
+      [
+        19,
+        8
+      ],
+      [
+        19,
+        9
+      ]
+    ],
+    "comparison_L19H0": [
+      [
+        19,
+        0
+      ]
+    ],
+    "comparison_L19H3": [
+      [
+        19,
+        3
+      ]
+    ],
+    "comparison_L18H1": [
+      [
+        18,
+        1
+      ]
+    ],
+    "previous_L16H2": [
+      [
+        16,
+        2
+      ]
+    ],
+    "previous_L16H4": [
+      [
+        16,
+        4
+      ]
+    ],
+    "previous_L16H2_H4": [
+      [
+        16,
+        2
+      ],
+      [
+        16,
+        4
+      ]
+    ],
+    "comparison_L16H0": [
+      [
+        16,
+        0
+      ]
+    ],
+    "comparison_L16H7": [
+      [
+        16,
+        7
+      ]
+    ]
+  }
+}

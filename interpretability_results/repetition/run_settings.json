@@ -1,0 +1,16 @@
+{
+  "checkpoint": "checkpoints/final.pt",
+  "lengths": [
+    32,
+    64,
+    128
+  ],
+  "examples": 100,
+  "batch_size": 4,
+  "seed": 42,
+  "token_low": 256,
+  "token_high": 32000,
+  "output": "interpretability_results/repetition",
+  "figure_name": "repetition_loss_combined.pdf",
+  "device": "cuda"
+}

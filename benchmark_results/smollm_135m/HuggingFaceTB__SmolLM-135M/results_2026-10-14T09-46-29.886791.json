@@ -1,0 +1,277 @@
+{
+  "results": {
+    "hellaswag": {
+      "name": "hellaswag",
+      "alias": "hellaswag",
+      "sample_len": 10042,
+      "acc,none": 0.351822346146186,
+      "acc_stderr,none": 0.004765629263643585,
+      "acc_norm,none": 0.4260107548297152,
+      "acc_norm_stderr,none": 0.004934846809827398
+    },
+    "piqa": {
+      "name": "piqa",
+      "alias": "piqa",
+      "sample_len": 1838,
+      "acc,none": 0.6860718171926007,
+      "acc_stderr,none": 0.010827928134189589,
+      "acc_norm,none": 0.6811751904243744,
+      "acc_norm_stderr,none": 0.010873037534333363
+    },
+    "arc_easy": {
+      "name": "arc_easy",
+      "alias": "arc_easy",
+      "sample_len": 2376,
+      "acc,none": 0.6161616161616161,
+      "acc_stderr,none": 0.009979061846649267,
+      "acc_norm,none": 0.5648148148148148,
+      "acc_norm_stderr,none": 0.010173216430370821
+    }
+  },
+  "group_subtasks": {},
+  "configs": {
+    "arc_easy": {
+      "task": "arc_easy",
+      "dataset_path": "allenai/ai2_arc",
+      "dataset_name": "ARC-Easy",
+      "training_split": "train",
+      "validation_split": "validation",
+      "test_split": "test",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{choices.label.index(answerKey)}}",
+      "unsafe_code": false,
+      "doc_to_choice": "{{choices.text}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_choice": "{{choices.text}}",
+        "doc_to_target": "{{choices.label.index(answerKey)}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "Question: {{question}}\nAnswer:",
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "HuggingFaceTB/SmolLM-135M",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\arc\\arc_easy.yaml"
+      }
+    },
+    "hellaswag": {
+      "task": "hellaswag",
+      "dataset_path": "Rowan/hellaswag",
+      "training_split": "train",
+      "validation_split": "validation",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        ctx = doc[\"ctx_a\"] + \" \" + doc[\"ctx_b\"].capitalize()\n        out_doc = {\n            \"query\": preprocess(doc[\"activity_label\"] + \": \" + ctx),\n            \"choices\": [preprocess(ending) for ending in doc[\"endings\"]],\n            \"gold\": int(doc[\"label\"]),\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "{{query}}",
+      "doc_to_target": "{{label}}",
+      "unsafe_code": false,
+      "doc_to_choice": "choices",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": "<function process_docs at 0x000002A09CB93060>",
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "{{query}}",
+        "doc_to_choice": "choices",
+        "doc_to_target": "{{label}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "HuggingFaceTB/SmolLM-135M",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\hellaswag\\hellaswag.yaml"
+      }
+    },
+    "piqa": {
+      "task": "piqa",
+      "dataset_path": "baber/piqa",
+      "training_split": "train",
+      "validation_split": "validation",
+      "doc_to_text": "Question: {{goal}}\nAnswer:",
+      "doc_to_target": "label",
+      "unsafe_code": false,
+      "doc_to_choice": "{{[sol1, sol2]}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{goal}}\nAnswer:",
+        "doc_to_choice": "{{[sol1, sol2]}}",
+        "doc_to_target": "label",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "goal",
+      "metadata": {
+        "version": 1.0,
+        "pretrained": "HuggingFaceTB/SmolLM-135M",
+        "dtype": "float32",
+        "config_source": "C:\\Users\\ASUS\\.conda\\envs\\nanogpt\\Lib\\site-packages\\lm_eval\\tasks\\piqa\\piqa.yaml"
+      }
+    }
+  },
+  "versions": {
+    "arc_easy": 1.0,
+    "hellaswag": 1.0,
+    "piqa": 1.0
+  },
+  "n-shot": {
+    "arc_easy": 0,
+    "hellaswag": 0,
+    "piqa": 0
+  },
+  "higher_is_better": {
+    "arc_easy": {
+      "acc": true,
+      "acc_norm": true
+    },
+    "hellaswag": {
+      "acc": true,
+      "acc_norm": true
+    },
+    "piqa": {
+      "acc": true,
+      "acc_norm": true
+    }
+  },
+  "n-samples": {
+    "hellaswag": {
+      "original": 10042,
+      "effective": 10042
+    },
+    "piqa": {
+      "original": 1838,
+      "effective": 1838
+    },
+    "arc_easy": {
+      "original": 2376,
+      "effective": 2376
+    }
+  },
+  "config": {
+    "model": "hf",
+    "model_args": {
+      "pretrained": "HuggingFaceTB/SmolLM-135M",
+      "dtype": "float32"
+    },
+    "model_num_parameters": 134515008,
+    "model_dtype": "torch.float32",
+    "model_revision": "main",
+    "model_sha": "1d461723eec654e65efdc40cf49301c89c0c92f4",
+    "batch_size": "4",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "455251b",
+  "date": 1791948982.4004107,
+  "pretty_env_info": "PyTorch version: 2.5.1+cu121\nIs debug build: False\nCUDA used to build PyTorch: 12.1\nROCM used to build PyTorch: N/A\n\nOS: Could not collect\nGCC version: (GCC) 11.2.0\r\nClang version: Could not collect\nCMake version: Could not collect\nLibc version: N/A\n\nPython version: 3.12.6 | packaged by Anaconda, Inc. | (main, Oct  3 2024, 07:22:25) [MSC v.1929 64 bit (AMD64)] (64-bit runtime)\nPython platform: Windows-11-10.0.26200-SP0\nIs CUDA available: True\nCUDA runtime version: Could not collect\nCUDA_MODULE_LOADING set to: LAZY\nGPU models and configuration: GPU 0: NVIDIA GeForce RTX 3060 Laptop GPU\nNvidia driver version: 555.97\ncuDNN version: Could not collect\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\n'wmic' is not recognized as an internal or external command,\r\noperable program or batch file.\n\nVersions of relevant libraries:\n[pip3] numpy==2.5.3\n[pip3] torch==2.5.1+cu121\n[conda] numpy                     2.5.3                    pypi_0    pypi\n[conda] torch                     2.5.1+cu121              pypi_0    pypi",
+  "transformers_version": "4.49.0",
+  "lm_eval_version": "0.4.13",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "<|endoftext|>",
+    "0"
+  ],
+  "tokenizer_eos_token": [
+    "<|endoftext|>",
+    "0"
+  ],
+  "tokenizer_bos_token": [
+    "<|endoftext|>",
+    "0"
+  ],
+  "eot_token_id": 0,
+  "max_length": 2048,
+  "task_hashes": {
+    "hellaswag": "edcc7edd27a555d3f7cbca0641152b2c5e4eb6eb79c5e62d7fe5887f47814323",
+    "piqa": "74d5a816572c396ad46edbd386954abe5ddb3db2d7195088387d1d5c1b32fd8b",
+    "arc_easy": "dce0d9b0f0cecd55bf2ac264042c5e45487df708d13123af3ae9e67bbbefdeb1"
+  },
+  "model_source": "hf",
+  "model_name": "HuggingFaceTB/SmolLM-135M",
+  "model_name_sanitized": "HuggingFaceTB__SmolLM-135M",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": null,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "619.6533799999743"
+}
