@@ -34,9 +34,9 @@ We went beyond training: we benchmarked AgentGate against **GPT-2 Small, Pythia-
 
 ## Model architecture
 
-AgentGate uses a standard causal language-modeling objective, with modern Transformer components: **rotary positional embeddings (RoPE)**, **pre-RMSNorm**, and a **SwiGLU** feed-forward network. It uses conventional multi-head attention (MHA), rather than grouped-query attention.
+AgentGate uses a standard causal language-modeling objective, with modern Transformer components: **rotary positional embeddings (RoPE)**, **pre-RMSNorm**, and a **SwiGLU** feed-forward network. It uses conventional multi-head attention (MHA).
 
-[Architecture diagram (PDF)](architecture_agengate.pdf)
+![Architecture diagram (PDF)](architecture_agengate.pdf)
 
 The implementation is in [`src/model/agent_gate.py`](src/model/agent_gate.py), with tokenization and dataset preparation in [`src/data/`](src/data/) and training logic in [`src/training/`](src/training/).
 
@@ -44,7 +44,7 @@ The implementation is in [`src/model/agent_gate.py`](src/model/agent_gate.py), w
 
 The model completed **20,599 optimizer steps**, processing approximately **2.70B tokens**. Training remained stable, and the final checkpoint achieved a full-validation loss of **2.8964** (perplexity **18.11**). Average training throughput was approximately **22.75K tokens/s**, with measured Model FLOPs Utilization (MFU) around **23.2%** on the NVIDIA L4.
 
-[View training and validation loss (PDF)](training_analysis/loss_curve.pdf)
+![View training and validation loss (PDF)](training_analysis/loss_curve.pdf)
 
 Additional training plots and derived measurements are in [`training_analysis/`](training_analysis/).
 
@@ -93,7 +93,7 @@ We asked whether AgentGate learns to use **earlier occurrences of a sequence** t
 
 **Experiment 1 — Repetition behavior.** We compared first occurrences of random token blocks, exact second copies, and shuffled second copies across block lengths 32, 64, and 128. Exact repetition sharply reduced next-token negative log-likelihood; shuffled copies did not show the same improvement.
 
-[Repeated-sequence NLL plots](interpretability_results/repetition/repetition_loss_combined.pdf)
+![Repeated-sequence NLL plots](interpretability_results/repetition/repetition_loss_combined.pdf)
 
 **Experiment 2 — Head specialization.** We measured previous-token and induction-pattern attention scores across all **240 attention heads**. Several heads in **layer 16** exhibited strong previous-token patterns; heads in **layers 18–19** showed strong induction-like patterns.
 
@@ -101,11 +101,11 @@ We asked whether AgentGate learns to use **earlier occurrences of a sequence** t
 
 **Experiment 3 — Causal ablation.** Zeroing the outputs of selected heads during inference reduced the model's advantage on repeated sequences. Ablating the pair of previous-token candidates **L16H2 + L16H4** reduced the copy advantage by approximately **5.31 nats**; comparison-head interventions had substantially smaller effects.
 
-[Head-ablation results](interpretability_results/ablation/ablation_effects.pdf)
+![Head-ablation results](interpretability_results/ablation/ablation_effects.pdf)
 
 **Experiment 4 — Cross-layer dependency.** Simultaneously ablating **L16H2 + L16H4** reduced the induction-pattern attention score of **L19H8 from 0.903 to 0.376**, while selected comparison-head ablations had little effect. This supports a functional dependency between earlier previous-token computations and later induction-pattern attention.
 
-[Cross-layer dependency results](interpretability_results/dependency/dependency_effects.pdf)
+![Cross-layer dependency results](interpretability_results/dependency/dependency_effects.pdf)
 
 Together, these experiments provide **evidence consistent with an induction-like copying circuit**, not a complete reconstruction of all its internal information pathways. The analysis uses synthetic repetition tasks; it does not establish how often these mechanisms are used in ordinary downstream tasks.
 
@@ -132,15 +132,6 @@ AgentGate/
 ├── modal_app.py             # Modal training entry point
 └── architecture_agengate.pdf
 ```
-
-## Reproducibility and artifacts
-
-- The **32K tokenizer**, source code, evaluation scripts, analysis code, and lightweight results are intended to be kept in the repository.
-- **Training shards** (`*.bin`, around 5.4 GB in total), **checkpoints** (`*.pt`), and large generated sample logs should **not** be committed to Git. They must be obtained separately for full reproduction of inference or training.
-- The training corpus was sampled from FineWeb-Edu-Dedup and Cosmopedia-v2 and stored as tokenized binary shards; corpus metadata and token-frequency audit are under `artifacts/pretraining_data/`.
-- The model was trained through `modal_app.py` on NVIDIA L4 hardware. Reproducing the complete pretraining run requires access to comparable compute and the original data preparation workflow.
-- The commands above assume the necessary Python packages are installed; this repository layout does not currently show a pinned `requirements.txt` or lockfile.
-
 ## Scope and limitations
 
 AgentGate is a **base language model**, not an instruction-tuned assistant. We do not claim it is production-ready for autonomous agents, safety-critical cyber-physical systems, or other high-stakes uses. Benchmark comparisons are not training-budget-matched; the interpretability experiments focus on controlled synthetic sequence-copying tasks.
