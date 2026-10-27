@@ -1,5 +1,7 @@
 # AgentGate: Pretraining and Benchmarking a Small Language Model with an Investigation of Its Induction Circuits
 
+[Project overview and author portfolio](https://tawsif76.github.io/projects/agentgate/) · [Mohammed Sydul Hasan Tawsif](https://tawsif76.github.io/)
+
 **AgentGate-Base-142M** is a 142.4M-parameter decoder-only Transformer **pretrained from scratch** on approximately **2.7 billion tokens**, then evaluated on standard language-model benchmarks and studied using mechanistic interpretability techniques.
 
 ## Overview
