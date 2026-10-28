@@ -1,18 +1,18 @@
 # AgentGate: Pretraining and Benchmarking a Small Language Model with an Investigation of Its Induction Circuits
 
-**AgentGate-Base-142M** is a 142.4M-parameter decoder-only Transformer **pretrained from scratch** on approximately **2.7 billion tokens**, then evaluated on standard language-model benchmarks and studied using mechanistic interpretability techniques.
+**AgentGate-Base-142M** is a 142.4M-parameter decoder only Transformer **pretrained from scratch** on approximately **2.7 billion tokens**. It is then evaluated on standard language model benchmarks and studied using mechanistic interpretability techniques.
 
 ## Overview
 
-Interest in **small language models (SLMs)** has grown because of their potential to reduce memory requirements and inference costs. Smaller models may be useful as components in AI agents, edge applications, and resource-constrained systems such as cyber-physical systems.
+Interest in **small language models (SLMs)** has grown because of their potential to reduce memory requirements and inference costs. Smaller models may be useful as components in AI agents, edge applications, and resource constrained systems.
 
 Motivated by this direction, we built **AgentGate**, a 142.4-million-parameter language model trained entirely from scratch on a mixture of **FineWeb-Edu-Dedup (80%)** and **Cosmopedia-v2 (20%)**. Our goal was not only to develop a working pretrained model, but to explore what could be achieved with a *very limited compute budget*.
 
 We trained on an **NVIDIA L4 GPU through Modal**, targeting its **$30 monthly compute credit**. The final training run consumed approximately **36 GPU-hours** and cost **$28.79 in GPU usage**; total experimental expenditure was approximately **$34**, including CPU charges, smoke tests, and checkpoint restarts.
 
-We went beyond training: we benchmarked AgentGate against **GPT-2 Small, Pythia-160M, and SmolLM-135M** on ARC-Easy, HellaSwag, and PIQA. We then investigated **induction-like circuits** through controlled sequence-repetition tests, attention-head specialization analysis, causal head ablations, and experiments on cross-layer functional dependencies.
+Beyond training, we benchmarked AgentGate against **GPT-2 Small, Pythia-160M, and SmolLM-135M** on ARC-Easy, HellaSwag, and PIQA. We then investigated **induction-like circuits** through sequence repetition tests, attention head specialization analysis, causal head ablations, and experiments on cross layer functional dependencies. The goal of this project is to document the full process of building, evaluating, and probing the internal behavior of a small language model under a constrained budget.
 
-**The goal of this project is to document the full process of building, evaluating, and probing the internal behavior of a small language model under a constrained budget.**
+The goal of this project is to document the full process of building, evaluating, and probing the internal behavior of a small language model under a constrained budget.
 
 ## At a glance
 
@@ -63,8 +63,6 @@ We used **EleutherAI LM Evaluation Harness v0.4.13**, without task-specific fine
 
 AgentGate scores higher than **Pythia-160M** on all three length-normalized metrics and higher than **GPT-2 Small** on ARC-Easy and HellaSwag. The largest normalized improvements over these two models are on ARC-Easy (**+5.76** and **+5.93 percentage points**, respectively). Differences on PIQA are small. **SmolLM-135M outperforms AgentGate on every benchmark.**
 
-These comparisons are **descriptive, not controlled**: the models differ in training-token budgets, data, tokenizers, and optimization. A model's benchmark score alone cannot establish architectural or compute efficiency.
-
 Full scores and, for the Hugging Face baselines, sample-level outputs are stored in [`benchmark_results/`](benchmark_results/).
 
 ### Running benchmarks
@@ -75,7 +73,7 @@ Once you have installed the project's dependencies and obtained the AgentGate ch
 python -m scripts.eval.run_benchmarks --tasks hellaswag,piqa,arc_easy --limit 0
 ```
 
-The custom harness adapter is in [`scripts/eval/agentgate_adapter.py`](scripts/eval/agentgate_adapter.py). It uses `checkpoints/final.pt` and `artifacts/tokenizer/bpe_32000.json` by default. **Model checkpoint files are excluded from Git**.
+The custom harness adapter is in [`scripts/eval/agentgate_adapter.py`](scripts/eval/agentgate_adapter.py). It uses `checkpoints/final.pt` and `artifacts/tokenizer/bpe_32000.json` by default. **We did not upload model checkpoints because of the size**.
 
 The comparison models can be evaluated with LM Evaluation Harness's `hf` backend, for example:
 
@@ -134,7 +132,7 @@ AgentGate/
 ```
 ## Scope and limitations
 
-AgentGate is a **base language model**, not an instruction-tuned assistant. We do not claim it is production-ready for autonomous agents, safety-critical cyber-physical systems, or other high-stakes uses. Benchmark comparisons are not training-budget-matched; the interpretability experiments focus on controlled synthetic sequence-copying tasks.
+AgentGate is a **base language model**, not an instruction tuned assistant. We do not claim it is production ready for autonomous agents, safety critical cyber physical systems, or other high stakes uses. Benchmark comparisons are not training budget matched; the interpretability experiments focus on controlled synthetic sequence-copying tasks.
 
 
 ## Project Documentation
